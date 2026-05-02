@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QQQ Market Trends Analysis</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+        .line {
+            fill: none;
+            stroke: steelblue;
+            stroke-width: 2px;
+        }
+        #chart-container {
+            margin-top: 20px;
+        }
+        select {
+            padding: 5px;
+            font-size: 16px;
+        }
+        .annotation-circle { fill: orange; cursor: pointer; }
+        .stats-box { font-size: 14px; margin-bottom: 10px; color: #444; }
+        .trend-up { color: green; font-weight: bold; }
+        .trend-down { color: red; font-weight: bold; }
+        .reset-button {
+            margin-left: 15px;
+            padding: 5px 12px;
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+
+        .reset-button:hover {
+            background-color: #e2e6ea;
+        }
+
+        .legend {
+            font-size: 12px;
+            margin-top: 10px;
+            display: flex;
+            gap: 20px;
+        }
+        .legend-item { display: flex; align-items: center; gap: 5px; }
+        .dot-price { height: 10px; width: 10px; background-color: steelblue; border-radius: 50%; }
+        .dot-vol-up { height: 10px; width: 10px; background-color: #26a69a; }
+        .dot-vol-down { height: 10px; width: 10px; background-color: #ef5350; }
+        .dot-event { height: 10px; width: 10px; background-color: #f39c12; border-radius: 50%; }
+    </style>
+</head>
+<body>
+
+    <h1>QQQ Market Trends Analysis</h1>
+
+    <div id="dashboard" class="stats-box">
+        Loading stats...
+    </div>
+
+    <label for="year-select">Choose a Year:</label>
+    <select id="year-select">
+        <option value="All">All Years</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+        <option value="2026">2026</option>
+</select>
+    <label for="month-select">Choose a Month:</label>
+    <select id="month-select">
+        <option value="All">All Months</option>
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+    </select>
+
+    <button id="reset-btn" class="reset-button">Reset View</button>
+
+    <div id="chart-container"></div>
+    <div class="legend">
+    <div class="legend-item"><div class="dot-price"></div> QQQ Close Price</div>
+    <div class="legend-item"><div class="dot-vol-up"></div> Volume (Up Day)</div>
+    <div class="legend-item"><div class="dot-vol-down"></div> Volume (Down Day)</div>
+    <div class="legend-item"><div class="dot-event"></div> Historical Event</div>
+    </div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
